@@ -1,0 +1,188 @@
+%%% Преамбула %%%
+
+\usepackage[T2A]{fontenc}   % кодировка
+\usepackage[utf8]{inputenc} % кодировка исходного текста
+\usepackage[russian]{babel} % локализация и переносы
+\usepackage{extsizes}       % размер шрифта 
+
+\usepackage{subcaption}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{listings} % листинг кода
+\captionsetup{compatibility=false}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% далее две строки отвечающие за т.н. "полуторный интервал"
+% плюс исправляем кабанические отступы вокруг формул
+\usepackage[nodisplayskipstretch]{setspace}
+\onehalfspacing
+\parskip 1.5ex % paragraph spacing
+
+\usepackage{graphicx} % для вставки картинок
+\usepackage{amssymb,amsfonts,amsmath,amsthm, mathtools} % математические дополнения от АМС
+\usepackage{icomma} % умная запятая)) $3,49$ - число, $3, 49$ - перечисление
+\usepackage{indentfirst} % отделять первую строку раздела абзацным отступом тоже
+\usepackage[usenames,dvipsnames]{color} % названия цветов
+\usepackage{makecell}
+\usepackage{multirow} % улучшенное форматирование таблиц
+\usepackage{ulem} % подчеркивания
+
+\usepackage{euscript} % математический шрифт Евклид (красивый) для формул
+\usepackage{mathrsfs} % красивые вычурные буквы с завитушками для формул
+% Перенос знаков в формулах по Львовскому (дублировать знак при переносе)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+            {\hbox{\mathsurround=0pt #1}}{}}
+\usepackage{physics} % для удобной записи производных
+
+% графики
+\usepackage{tikz}
+
+% ====================================================================
+%                   Настраиваем стандартные поля
+%                   Верхнее и нижнее - 2см
+%                   Левое - 3см
+%                   Правое - 1.5см
+% ====================================================================
+\usepackage{geometry}
+\geometry{left=3cm}
+\geometry{right=1.5cm}
+\geometry{top=2cm}
+\geometry{bottom=2cm}
+
+% ====================================================================
+%                       Настройка заголовков
+% ====================================================================
+\usepackage{titlesec}
+ 
+\titleformat{\chapter}[display]
+    {\filcenter}
+    {\MakeUppercase{\chaptertitlename} \thechapter}
+    {8pt}
+    {\bfseries}{}
+ 
+\titleformat{\section}
+    {\normalsize\bfseries}
+    {\thesection}
+    {1em}{}
+ 
+\titleformat{\subsection}
+    {\normalsize\bfseries}
+    {\thesubsection}
+    {1em}{}
+% Настройка вертикальных и горизонтальных отступов заголовков
+\titlespacing*{\chapter}{0pt}{-30pt}{8pt}
+\titlespacing*{\section}{\parindent}{*4}{*1.3} % мне отступы снизу показались слишком большими
+\titlespacing*{\subsection}{\parindent}{*4}{*1.3}
+
+
+% ====================================================================
+%                     Включаем Times New Roman
+% ====================================================================
+\renewcommand{\rmdefault}{ftm} 
+\frenchspacing
+
+% ====================================================================
+%           Нумерация страниц справа снизу (контитулы)
+% ====================================================================
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[R]{\thepage}
+\fancyheadoffset{0mm}
+\fancyfootoffset{0mm}
+\setlength{\footskip}{17pt}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{ 
+    \fancyhf{}
+    \rfoot{\thepage}}
+\setcounter{page}{3} % начать нумерацию страниц с №3
+
+% ====================================================================
+%                       Настройка оглавления
+% ====================================================================
+\usepackage{tocloft}
+\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth} \bfseries\MakeUppercase}
+\renewcommand{\cftbeforetoctitleskip}{-1em}
+\renewcommand{\cftaftertoctitle}{\mbox{}\hfill \\ \mbox{}\vspace{-2.5em}}
+\renewcommand{\cftchapfont}{\normalsize\bfseries \MakeUppercase{\chaptername} }
+\renewcommand{\cftsecfont}{\hspace{31pt}}
+\renewcommand{\cftsubsecfont}{\hspace{0pt}} % убрал отступ подпараграфов в расписании
+\renewcommand{\cftbeforechapskip}{1em}
+\renewcommand{\cftparskip}{1mm}
+\renewcommand{\cftdotsep}{1}
+\setcounter{tocdepth}{2} % задать глубину оглавления — до subsection включительно
+
+% ====================================================================
+%                   Настройка специальных разделов
+% Встроим в оглавление специальные главы: аннотацию, введение и т.д.
+% Такие главы будут создаваться командой "\likechapter{название главы}" 
+% ====================================================================
+\newcommand{\likechapterheading}[1]{ 
+    \begin{center}
+    \textbf{\MakeUppercase{#1}}
+    \end{center}}
+
+\makeatletter
+    \renewcommand{\@dotsep}{2}
+    \newcommand{\l@likechapter}[2]{{\bfseries\@dottedtocline{0}{0pt}{0pt}{#1}{#2}}}
+\makeatother
+\newcommand{\likechapter}[1]{    
+    \likechapterheading{#1}    
+    \addcontentsline{toc}{likechapter}{\MakeUppercase{#1}}}
+    
+% % ====================================================================
+% %                 Организация рабочего пространства
+% % ====================================================================
+% \usepackage{import}
+% \newcommand{\includechapter}[1]{\subimport{chapter_#1/}{chapter_#1}\newpage}
+% \newcommand{\includeappend}[1]{\subimport{append_#1/}{append_#1}\newpage}
+% \usepackage{tabularx}
+
+% ====================================================================
+%                         Список литературы
+% ====================================================================
+\newcommand{\includebiblio}[1]{
+    \begingroup
+    \renewcommand{\chapter}[2]{
+        \clearpage
+        \stepcounter{chapter}
+        \centering\paragraph{\MakeUppercase{Библиографический список}}
+        \addcontentsline{toc}{likechapter}{\MakeUppercase{Библиографический список}}
+    }
+    \let\bibfont\protect\normalsize
+    \bibliographystyle{ugost2008} % Стиль библиографических ссылок БибТеХа
+    \bibliography{#1}
+    \endgroup
+}
+
+
+% ====================================================================
+%                           Приложения
+% ====================================================================
+\usepackage[title,titletoc]{appendix}
+\titleformat{\paragraph}[display]
+    {\filcenter}
+    {\MakeUppercase{\chaptertitlename} \thechapter}
+    {8pt}
+    {\bfseries}{}
+\titlespacing*{\paragraph}{0pt}{-30pt}{8pt}
+\newcommand{\append}[1]{
+    \clearpage
+    \stepcounter{chapter}
+    \begin{center}
+        \paragraph{\MakeUppercase{\chaptertitlename~\Asbuk{chapter}}}
+        \vspace{-0.5cm}
+        \paragraph{\MakeUppercase{ #1}}
+    \end{center}
+    \addcontentsline{toc}{likechapter}{\MakeUppercase{\chaptertitlename~\Asbuk{chapter}: #1}}
+}
+
+% ====================================================================
+%                           МЕТА-ДАННЫЕ
+% ====================================================================
+\usepackage{authblk}
+\author{Мазунин К.Ю.}
+\title{Алгоритмы обнаружения взаимоблокировок в многопоточных приложениях}
+\affil{Университет "ИТМО"}

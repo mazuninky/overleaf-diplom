@@ -1,0 +1,24 @@
+\documentclass[a4paper,14pt,russian]{extreport}
+
+\input{preamble} % Подключаем преамбулу
+
+\begin{document}
+
+\input{inc/0-title} 
+
+\input{inc/chapter-annotation/annotation} % аннотация
+
+% Оглавление. 
+\tableofcontents
+\newpage
+
+
+\input{inc/0-intro} 
+\input{inc/chapter-first/1-first} 
+\input{inc/chapter-second/2-first} 
+\input{inc/chapter-thrid/3-first} 
+\input{inc/chapter-fourth/4-first} 
+
+\includebiblio{sources} % в файле source.bib лежит БД со списком источников
+
+\end{document}
