@@ -143,19 +143,9 @@
 % ====================================================================
 %                         Список литературы
 % ====================================================================
-\newcommand{\includebiblio}[1]{
-    \begingroup
-    \renewcommand{\chapter}[2]{
-        \clearpage
-        \stepcounter{chapter}
-        \centering\paragraph{\MakeUppercase{Библиографический список}}
-        \addcontentsline{toc}{likechapter}{\MakeUppercase{Библиографический список}}
-    }
-    \let\bibfont\protect\normalsize
-    \bibliographystyle{ugost2008} % Стиль библиографических ссылок БибТеХа
-    \bibliography{#1}
-    \endgroup
-}
+\bibliographystyle{gost-numeric.bbx}
+\usepackage[parentracker=true, backend=biber, hyperref=false, bibencoding=utf8, style=numeric-comp, language=auto, autolang=other, citestyle=gost-numeric, defernumbers=true, bibstyle=gost-numeric, sorting=ntvy]{biblatex}
+\addbibresource{sources.bib}
 
 
 % ====================================================================
